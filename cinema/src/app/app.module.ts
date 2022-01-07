@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 import { MovieComponent } from './movie/movie.component';
 import { EditMovieComponent } from './edit-movie/edit-movie.component';
 import { AddMovieComponent } from './add-movie/add-movie.component';
-import { MoviesMovieComponent } from './movies-movie/movies-movie.component';
+//import { MoviesMovieComponent } from './movies-movie/movies-movie.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MoviesComponent } from './movies/movies.component';
+import { SinglemovieComponent } from './singlemovie/singlemovie.component';
+//import { MoviesComponent } from './movies/movies.component';
 
 @NgModule({
   declarations: [
@@ -15,8 +16,9 @@ import { MoviesComponent } from './movies/movies.component';
     MovieComponent,
     EditMovieComponent,
     AddMovieComponent,
-    MoviesMovieComponent,
-    MoviesComponent
+    SinglemovieComponent,
+   // MoviesMovieComponent,
+    //MoviesComponent
   ],
   imports: [
     BrowserModule,

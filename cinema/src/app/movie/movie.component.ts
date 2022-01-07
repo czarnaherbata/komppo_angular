@@ -3,6 +3,8 @@ import { Movies } from '../movie-mock';
 import { Movie } from '../Movie';
 import { AddMovieComponent } from '../add-movie/add-movie.component';
 import { NotExpr } from '@angular/compiler';
+import { MatDialog } from '@angular/material/dialog';
+import { EditMovieComponent } from '../edit-movie/edit-movie.component';
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
@@ -10,42 +12,48 @@ import { NotExpr } from '@angular/compiler';
 })
 export class MovieComponent implements OnInit {
 movieList=Movies;
-headers:string[]=[];
-  newMovie: Movie;
+selectedMovie: Movie = null;
+  headers: string[] = [];
+  selected = false;
+ // newMovie: Movie;
 //selectedMovie: Movie=null;
 //selectedMovie : Movie=null;
-
-  constructor( public dialog: MatDialog) {
-    this.movieList.forEach(el=>{
-      const keys=Object.keys(el);
-      keys.forEach(key=>{
-        if(!this.headers.includes(key)){
-          console.log(key);
-          this.headers.push(key)
+newMovie: Movie | undefined;
+constructor(public dialog: MatDialog) {
+  this.movieList.forEach(el => {
+    const keys = Object.keys(el);
+    keys.forEach(key => {
+      if (!this.headers.includes(key)) {
+        if (key !== 'amount') {
+          this.headers.push(key);
         }
-      })
-    })
-   }
+      }
+    });
+  });
+}
 
   ngOnInit(): void {
   
    }
-openDialog(): void{
-  let dialogRef=null;
-  dialogRef=this.dialog.open(AddMovieComponent, {
-    width: '30%',
-    data:{title: '', duration: '', year: ''}
-  });
-  dialogRef.afterClosed().subscribe((result: { year: string | number | Date; title: string; duration: string; } | undefined)=>{
-    if(result!==undefined){
-      if(result.year===''){
-        result.year=new Date();
-        
-      }
-      this.newMovie=new Movie(result.title, result.duration, new Date(result.year));
-      this.movieList.push(this.newMovie)
+   openDialog(add: boolean, edit: boolean): void {
+    let dialogRef = null;
+    if (add) {
+      dialogRef = this.dialog.open(AddMovieComponent, {
+        width: '30%',
+        data: { title: '', duration: '', year: '' }
+      });
     }
-  })
-} 
+    if (edit) {
+      dialogRef = this.dialog.open(EditMovieComponent, {
+        width: '30%',
+        data: {
+          title: this.selectedMovie.title, category: this.selectedMovie.duration, content: this.selectedMovie.year
+        }
+      });
+    }
+
+
+  }
+
 
 }
