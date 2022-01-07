@@ -1,0 +1,16 @@
+<div className="justifyView">
+    <table>
+         <thead>
+             <tr>
+                 <th *ngFor="let movie_th of headers">
+                     <span class="theader"></span>
+                 </th>
+             </tr>
+         </thead>
+            <tr *ngFor="let movie of movieList"><td>
+               <td><span class="tbody" >{{movie.title}}</span></td>
+                <td><span class="tbody" >{{movie.duration}}</span></td>
+                <td><span class="tbody">{{movie.Date}}</span>
+            </td></tr>
+    </table>
+</div>

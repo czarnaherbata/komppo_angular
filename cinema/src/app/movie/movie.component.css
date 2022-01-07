@@ -1,0 +1,11 @@
+
+table,th,td{
+   border:1px solid darkgrey;
+   padding:1em;
+}
+th{
+    background-color: grainsboro;
+    color:darkslatgrey;
+    font-family:'Trebucher MS';
+    font-size:large;
+}
