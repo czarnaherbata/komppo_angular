@@ -1,5 +1,5 @@
 <div className="justifyView">
-    <table>
+    <!-- <table>
          <thead>
              <tr>
                  <th *ngFor="let movie_th of headers">
@@ -12,5 +12,15 @@
                 <td><span class="tbody" >{{movie.duration}}</span></td>
                 <td><span class="tbody">{{movie.Date}}</span>
             </td></tr>
-    </table>
+    </table> -->
+
+    <div class="moviesList">
+        <div class="movie" *ngFor="let movie of movieList">
+            <p>{{movie.title}}</p>
+            <p>{{movie.duration}}</p>
+            <p>{{movie.year}}</p>
+        </div>
+    </div>
+
+    <button mat-raised-buttor color="primary" (click)="openDialog()">DODAJ FILM</button>
 </div>

@@ -8,6 +8,15 @@ import { AddMovieComponent } from './add-movie/add-movie.component';
 //import { MoviesMovieComponent } from './movies-movie/movies-movie.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SinglemovieComponent } from './singlemovie/singlemovie.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 //import { MoviesComponent } from './movies/movies.component';
 
 @NgModule({
@@ -22,9 +31,24 @@ import { SinglemovieComponent } from './singlemovie/singlemovie.component';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule,
+    FormsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
-  providers: [],
+  providers: [
+      {
+          provide: MatDialogRef,
+          useValue: {}
+      },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
