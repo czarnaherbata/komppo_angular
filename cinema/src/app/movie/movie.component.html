@@ -19,8 +19,11 @@
             <p>{{movie.title}}</p>
             <p>{{movie.duration}}</p>
             <p>{{movie.year}}</p>
+            <button mat-raised-buttor color="primary" (click)="openDialog(false, true, movie)">edytuj</button>
+            <button>usuń</button>
+
         </div>
     </div>
 
-    <button mat-raised-buttor color="primary" (click)="openDialog()">DODAJ FILM</button>
+    <button mat-raised-buttor color="primary" (click)="openDialog(true, false, null)">DODAJ FILM</button>
 </div>

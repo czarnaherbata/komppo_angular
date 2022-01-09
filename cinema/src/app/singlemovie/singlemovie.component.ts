@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Movie } from '../Movie';
+  
 @Component({
   selector: 'app-singlemovie',
   templateUrl: './singlemovie.component.html',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SinglemovieComponent implements OnInit {
 
+ // @Output() smovie: Movie;
+ @Output() editMovie: EventEmitter<void>=new EventEmitter();
+ @Output() deleteMovie: EventEmitter<void>=new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
   }
+  
 
 }
+  

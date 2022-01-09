@@ -15,10 +15,10 @@ export class MovieComponent implements OnInit {
   selectedMovie: any = null;
   headers: string[] = [];
   selected = false;
- // newMovie: Movie;
+  newMovie: Movie;
 //selectedMovie: Movie=null;
 //selectedMovie : Movie=null;
-newMovie: Movie | undefined;
+//newMovie: Movie | any;
 constructor(public dialog: MatDialog) {
   this.movieList.forEach(el => {
     const keys = Object.keys(el);
@@ -54,19 +54,42 @@ constructor(public dialog: MatDialog) {
 
 
 //   }
-   openDialog(): void {
+   openDialog(add: boolean, edit: boolean, clickedMovie: Movie): void {
        let dialogRef = null;
 
-       dialogRef = this.dialog.open(AddMovieComponent, {
-           width: '30%',
-           data: { title: '', duration: '', year: '' }
-       });
+       if (add) {
+        dialogRef = this.dialog.open(AddMovieComponent, {
+          width: '30%',
+          data: { title: '', duration: '', year: '' }
+        });
+       }
+       
+       if (edit) {
+        this.selectedMovie = clickedMovie
+        dialogRef = this.dialog.open(EditMovieComponent, {
+          width: '30%',
+          data: {
+            title: this.selectedMovie.title, duration: this.selectedMovie.duration, year: this.selectedMovie.year
+          }
+        });
+       }
 
-       dialogRef.afterClosed().subscribe(result => {
-           if (result !== undefined) {
-               this.newMovie = new Movie(result.title, result.duration, result.year)
-               this.movieList.push(this.newMovie)
-           }
-       })
-   }
-}
+        dialogRef.afterClosed().subscribe(result => {
+          if (result !== undefined) {
+            this.newMovie = new Movie(result.title, result.duration, result.year)
+
+            if (add) {
+              this.movieList.push(this.newMovie)
+            }
+            if (edit) {
+              this.movieList.forEach((obj, index, tab) => {
+                if (obj === this.selectedMovie) {
+                  tab[index] = this.newMovie;
+                  this.selectedMovie = tab[index];
+                }
+              });
+            }
+              
+          }
+      })
+}}
