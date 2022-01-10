@@ -17,6 +17,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { ShowsComponent } from './shows/shows.component';
 //import { MoviesComponent } from './movies/movies.component';
 
 @NgModule({
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     EditMovieComponent,
     AddMovieComponent,
     SinglemovieComponent,
+    ShowsComponent,
    // MoviesMovieComponent,
     //MoviesComponent
   ],
