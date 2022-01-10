@@ -18,6 +18,8 @@ import { MatListModule } from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ShowsComponent } from './shows/shows.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
 //import { MoviesComponent } from './movies/movies.component';
 
 @NgModule({
@@ -28,6 +30,7 @@ import { ShowsComponent } from './shows/shows.component';
     AddMovieComponent,
     SinglemovieComponent,
     ShowsComponent,
+    HomeComponent,
    // MoviesMovieComponent,
     //MoviesComponent
   ],
@@ -43,7 +46,8 @@ import { ShowsComponent } from './shows/shows.component';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    AppRoutingModule
   ],
   providers: [
       {
