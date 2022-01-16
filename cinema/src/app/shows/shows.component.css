@@ -1,0 +1,12 @@
+.showsList {
+    display: flex;
+    background-color: #242333;
+}
+
+.show {
+    background-color: white;
+    max-width: 150px;
+    border: solid;
+    padding: 10px;
+    margin-left: 5px;
+}

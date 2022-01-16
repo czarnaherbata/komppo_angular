@@ -20,7 +20,11 @@ import { FormsModule } from '@angular/forms';
 import { ShowsComponent } from './shows/shows.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
-//import { MoviesComponent } from './movies/movies.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { EditShowComponent } from './edit-show/edit-show.component';
+import { AddShowComponent } from './add-show/add-show.component';
+import { ShowComponent } from './show/show.component';
+// import { MoviesComponent } from './movies/movies.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,9 @@ import { HomeComponent } from './home/home.component';
     SinglemovieComponent,
     ShowsComponent,
     HomeComponent,
+    EditShowComponent,
+    AddShowComponent,
+    ShowComponent,
    // MoviesMovieComponent,
     //MoviesComponent
   ],
@@ -47,7 +54,8 @@ import { HomeComponent } from './home/home.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatMenuModule
   ],
   providers: [
       {

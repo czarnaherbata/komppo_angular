@@ -1,4 +1,7 @@
 <div class="content">
   {{title}}
+  <button mat-button routerLink="/">Home</button>
+  <button mat-button routerLink="/allMovies">Movies</button>
+  <button mat-button routerLink="/allShows">Shows</button>
 </div>
-<app-movie></app-movie>
+<router-outlet></router-outlet>

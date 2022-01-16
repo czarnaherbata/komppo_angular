@@ -1,5 +1,5 @@
 export class Room{
-    constructor(public rows: number, seatsInRow: number, roomNumber: number)
+    constructor(public roomNumber: number, public rows: number, public seatsInRow: number)
     {
 
     }

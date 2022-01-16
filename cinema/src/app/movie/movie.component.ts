@@ -94,10 +94,8 @@ constructor(public dialog: MatDialog) {
       })
 }
 deleteMovie(movie: Movie): void{
-
   this.movieList=this.movieList.splice(this.movieList.indexOf(movie));
  // this.selectedMovie=null;
-  
 }
 
 
