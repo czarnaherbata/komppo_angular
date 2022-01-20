@@ -8,6 +8,10 @@
             <p>Godzina: {{show.hour + ':' + show.minute}}</p>
             <p>Sala: {{show.room.roomNumber}}</p>
             <p>Ilość miejsc: {{show.room.rows * show.room.seatsInRow}}</p>
+            <button mat-raised-buttor color="primary" (click)=deleteShow(show)>Usuń</button>
+            <button mat-raised-buttor color="primary" (click)=openShow(show)>Przejdź do strony seansu</button>
         </div>
     </div>
+
+    <button mat-raised-buttor color="primary" (click)="openDialog()">Dodaj Seans</button>
 </div>

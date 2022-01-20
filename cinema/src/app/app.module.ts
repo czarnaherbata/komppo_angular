@@ -24,6 +24,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { EditShowComponent } from './edit-show/edit-show.component';
 import { AddShowComponent } from './add-show/add-show.component';
 import { ShowComponent } from './show/show.component';
+import { HttpClientModule } from '@angular/common/http';
 // import { MoviesComponent } from './movies/movies.component';
 
 @NgModule({
@@ -55,7 +56,8 @@ import { ShowComponent } from './show/show.component';
     MatInputModule,
     MatSelectModule,
     AppRoutingModule,
-    MatMenuModule
+    MatMenuModule,
+    HttpClientModule
   ],
   providers: [
       {

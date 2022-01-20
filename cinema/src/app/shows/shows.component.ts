@@ -5,6 +5,7 @@ import { Rooms } from '../rooms-mock'
 import { AddShowComponent } from '../add-show/add-show.component'
 import { EditShowComponent } from '../edit-show/edit-show.component'
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shows',
@@ -17,36 +18,27 @@ export class ShowsComponent implements OnInit {
   headers: string[] = [];
   selected = false;
   newShow: Show;
-  constructor(public dialog: MatDialog) {
-      
-  }
+
+  constructor(public dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  openDialog(add: boolean, edit: boolean, clickedShow: Show): void {
-      let dialogRef = null;
+  openDialog(): void {
+    let dialogRef = null;
+    dialogRef = this.dialog.open(AddShowComponent, {
+        width: '30%',
+        data: {}
+    })
+  }
 
-      if (add) {
-          dialogRef = this.dialog.open(AddShowComponent, {
-              width: '30%',
-              data: {}
-          })
-      }
+  openShow(show: Show) {
+      this.router.navigate(['show/' + show]);
+  }
 
-      if (edit) {
-          this.selectedShow = clickedShow;
-          dialogRef = this.dialog.open(EditShowComponent, {
-              width: '30%',
-              data: {}
-          })
-        }
-
-        dialogRef?.afterClosed().subscribe(result => {
-            if (result !== undefined) {
-                // this.newShow = new Show()
-            }
-        })
-
+  deleteShow(showToDelete: Show): void{
+    // this.movieList=this.movieList.splice(this.movieList.indexOf(movie));
+    console.log('delete' + showToDelete.movie.title);
+    this.showList = this.showList.filter(obj => obj !== showToDelete);
   }
 }

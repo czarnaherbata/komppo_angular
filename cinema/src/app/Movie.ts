@@ -1,5 +1,5 @@
 export class Movie{
-    constructor(public title: string, public duration: number, public year:number)
+    constructor(public id: number, public title: string, public duration: number, public year:number)
     {
 
     }

@@ -5,6 +5,8 @@ import { AddMovieComponent } from '../add-movie/add-movie.component';
 import { NotExpr } from '@angular/compiler';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { EditMovieComponent } from '../edit-movie/edit-movie.component';
+import { MoviesService } from '../movies.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
@@ -16,10 +18,11 @@ export class MovieComponent implements OnInit {
   headers: string[] = [];
   selected = false;
   newMovie: Movie;
+  title: string;
 //selectedMovie: Movie=null;
 //selectedMovie : Movie=null;
 //newMovie: Movie | any;
-constructor(public dialog: MatDialog) {
+constructor(public dialog: MatDialog, private movies:MoviesService, private route:ActivatedRoute) {
   this.movieList.forEach(el => {
     const keys = Object.keys(el);
     keys.forEach(key => {
@@ -33,6 +36,11 @@ constructor(public dialog: MatDialog) {
 }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params=>this.title=params.get('title'));
+
+    if(this.title){
+      this.movieList=this.movies.getMovies();
+    }
       
   }
 //    openDialog(add: boolean, edit: boolean): void {
@@ -76,15 +84,17 @@ constructor(public dialog: MatDialog) {
 
         dialogRef.afterClosed().subscribe(result => {
           if (result !== undefined) {
-            this.newMovie = new Movie(result.title, result.duration, result.year)
+            this.newMovie = new Movie(result. id, result.title, result.duration, result.year)
 
             if (add) {
+              this.movies.addMovie(this.newMovie);
               this.movieList.push(this.newMovie)
             }
             if (edit) {
               this.movieList.forEach((obj, index, tab) => {
                 if (obj === this.selectedMovie) {
                   tab[index] = this.newMovie;
+                  this.movies.editMovie(this.newMovie, this.selectedMovie)
                   this.selectedMovie = tab[index];
                 }
               });
@@ -93,9 +103,11 @@ constructor(public dialog: MatDialog) {
           }
       })
 }
-deleteMovie(movie: Movie): void{
-  this.movieList=this.movieList.splice(this.movieList.indexOf(movie));
- // this.selectedMovie=null;
+deleteMovie(movieToDelete: Movie): void{
+  // this.movieList=this.movieList.splice(this.movieList.indexOf(movie));
+  this.movies.deleteMovie(this.selectedMovie)
+  console.log('delete' + movieToDelete.title);
+  this.movieList = this.movieList.filter(obj => obj !== movieToDelete);
 }
 
 
