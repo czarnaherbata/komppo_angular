@@ -5,110 +5,82 @@ import { AddMovieComponent } from '../add-movie/add-movie.component';
 import { NotExpr } from '@angular/compiler';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { EditMovieComponent } from '../edit-movie/edit-movie.component';
-import { MoviesService } from '../movies.service';
+import { MoviesHttpService } from '../movies-http.service';
 import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.component.html',
-  styleUrls: ['./movie.component.css']
+  styleUrls: ['./movie.component.css'],
+  providers: [MoviesHttpService]
 })
 export class MovieComponent implements OnInit {
-  movieList = Movies;
+  movieList: Movie[] = [];
   selectedMovie: any = null;
-  headers: string[] = [];
   selected = false;
   newMovie: Movie;
-  title: string;
-//selectedMovie: Movie=null;
-//selectedMovie : Movie=null;
-//newMovie: Movie | any;
-constructor(public dialog: MatDialog, private movies:MoviesService, private route:ActivatedRoute) {
-  this.movieList.forEach(el => {
-    const keys = Object.keys(el);
-    keys.forEach(key => {
-      if (!this.headers.includes(key)) {
-        if (key !== 'amount') {
-          this.headers.push(key);
-        }
-      }
+  lastMovieId = 0;
+
+  constructor(public dialog: MatDialog, private movieService: MoviesHttpService, private route: ActivatedRoute) {
+    this.movieService.getMovies().subscribe(movieList => {
+      this.movieList = movieList;
+      this.calculateLastMovieId();
     });
-  });
-}
-
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params=>this.title=params.get('title'));
-
-    if(this.title){
-      this.movieList=this.movies.getMovies();
-    }
-      
   }
-//    openDialog(add: boolean, edit: boolean): void {
-//     let dialogRef = null;
-//     if (add) {
-//       dialogRef = this.dialog.open(AddMovieComponent, {
-//         width: '30%',
-//         data: { title: '', duration: '', year: '' }
-//       });
-//     }
-//     if (edit) {
-//       dialogRef = this.dialog.open(EditMovieComponent, {
-//         width: '30%',
-//         data: {
-//           title: this.selectedMovie.title, category: this.selectedMovie.duration, content: this.selectedMovie.year
-//         }
-//       });
-//     }
 
+  calculateLastMovieId() {
+    for (let movie of this.movieList) {
+      if (movie.id > this.lastMovieId)
+        this.lastMovieId = movie.id
+    }
+  }
 
-//   }
-   openDialog(add: boolean, edit: boolean, clickedMovie: Movie): void {
-       let dialogRef = null;
+  ngOnInit(): void { }
 
-       if (add) {
-        dialogRef = this.dialog.open(AddMovieComponent, {
-          width: '30%',
-          data: { title: '', duration: '', year: '' }
-        });
-       }
-       
-       if (edit) {
-        this.selectedMovie = clickedMovie
-        dialogRef = this.dialog.open(EditMovieComponent, {
-          width: '30%',
-          data: {
-            title: this.selectedMovie.title, duration: this.selectedMovie.duration, year: this.selectedMovie.year
-          }
-        });
-       }
+  openDialog(add: boolean, edit: boolean, clickedMovie: Movie): void {
+    let dialogRef = null;
 
-        dialogRef.afterClosed().subscribe(result => {
-          if (result !== undefined) {
-            this.newMovie = new Movie(result. id, result.title, result.duration, result.year)
+    if (add) {
+      dialogRef = this.dialog.open(AddMovieComponent, {
+        width: '30%',
+        data: { id: '', title: '', duration: '', year: '' }
+      });
+    }
 
-            if (add) {
-              this.movies.addMovie(this.newMovie);
-              this.movieList.push(this.newMovie)
+    if (edit) {
+      this.selectedMovie = clickedMovie
+      dialogRef = this.dialog.open(EditMovieComponent, {
+        width: '30%',
+        data: {
+          id: this.selectedMovie.id, title: this.selectedMovie.title, duration: this.selectedMovie.duration, year: this.selectedMovie.year
+        }
+      });
+    }
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (add) {
+          this.newMovie = new Movie(this.lastMovieId + 1, result.title, result.duration, result.year)
+          this.movieService.addMovie(this.newMovie).subscribe(result => this.movieList.push(this.newMovie));
+          this.lastMovieId ++;
+        }
+        if (edit) {
+          this.newMovie = new Movie(this.selectedMovie.id, result.title, result.duration, result.year)
+          this.movieService.editMovie(this.newMovie);
+          this.movieList.forEach((obj, index, tab) => {
+            if (obj === this.selectedMovie) {
+              tab[index] = this.newMovie;
+              this.selectedMovie = tab[index];
             }
-            if (edit) {
-              this.movieList.forEach((obj, index, tab) => {
-                if (obj === this.selectedMovie) {
-                  tab[index] = this.newMovie;
-                  this.movies.editMovie(this.newMovie, this.selectedMovie)
-                  this.selectedMovie = tab[index];
-                }
-              });
-            }
-              
-          }
-      })
-}
-deleteMovie(movieToDelete: Movie): void{
-  // this.movieList=this.movieList.splice(this.movieList.indexOf(movie));
-  this.movies.deleteMovie(this.selectedMovie)
-  console.log('delete' + movieToDelete.title);
-  this.movieList = this.movieList.filter(obj => obj !== movieToDelete);
-}
+          });
+        }
 
-
+      }
+    })
+  }
+  deleteMovie(movieToDelete: Movie): void {
+    console.log('delete' + movieToDelete.title);
+    // this.movieList = this.movieList.filter(obj => obj !== movieToDelete);
+    this.movieService.deleteMovie(movieToDelete).subscribe(result => this.movieList = this.movieList.filter(obj => obj !== movieToDelete));
+  }
 }

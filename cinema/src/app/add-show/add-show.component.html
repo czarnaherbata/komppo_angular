@@ -4,7 +4,7 @@
         <mat-form-field class="example-full-width">
             <mat-label>Film:</mat-label>
             <mat-select [(ngModel)]="data.movie" name="movie" required>
-                <mat-option *ngFor="let movie of movieList" [value]="movie.id">
+                <mat-option *ngFor="let movie of movieList" [value]="movie">
                     {{movie.title}}
                 </mat-option>
             </mat-select>
@@ -35,7 +35,7 @@
         <mat-form-field>
             <mat-label>Sala:</mat-label>
             <mat-select [(ngModel)]="data.room" name="room" required> 
-                <mat-option *ngFor="let room of roomsList" [value]="room.roomNumber">
+                <mat-option *ngFor="let room of roomsList" [value]="room">
                     Sala nr {{room.roomNumber}}, liczba miejsc: {{room.rows * room.seatsInRow}} 
                 </mat-option>
             </mat-select>
