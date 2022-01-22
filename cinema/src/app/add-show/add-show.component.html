@@ -1,1 +1,48 @@
-<p>add-show works!</p>
+<h1 mat-dialog-title>Dodaj film</h1>
+<div mat-dialog-content>
+    <form #f="ngForm">
+        <mat-form-field class="example-full-width">
+            <mat-label>Film:</mat-label>
+            <mat-select [(ngModel)]="data.movie" name="movie" required>
+                <mat-option *ngFor="let movie of movieList" [value]="movie.id">
+                    {{movie.title}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    
+        <mat-form-field class="example-full-width">
+            <mat-label>Data:</mat-label>
+            <input matInput type="date" [(ngModel)]="data.date" name="date" min="{{todayDate}}" max="{{maxDate}}" required>
+        </mat-form-field>
+
+        <!-- <mat-form-field>
+            <mat-label>Godzina: </mat-label>
+            <mat-select [(ngModel)]="data.hour" name="hour" required>
+                <mat-option *ngFor="let hour of hourList" [value]="hour">
+                    {{hour}}
+                </mat-option>
+            </mat-select>
+
+            <mat-select [(ngModel)]="data.minute" name="minute" required>
+                <mat-option *ngFor="let minute of minuteList" [value]="minute">
+                    {{minute}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label></mat-label>
+            
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label></mat-label>
+            
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label></mat-label>
+            
+        </mat-form-field> -->
+    </form>
+</div>

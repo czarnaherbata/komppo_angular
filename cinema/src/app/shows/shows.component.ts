@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Show } from '../Show';
 import { Shows } from "../shows-mock";
-import { Rooms } from '../rooms-mock'
+import { Rooms } from '../rooms'
 import { AddShowComponent } from '../add-show/add-show.component'
 import { EditShowComponent } from '../edit-show/edit-show.component'
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -33,7 +33,7 @@ export class ShowsComponent implements OnInit {
   }
 
   openShow(show: Show) {
-      this.router.navigate(['show/' + show]);
+      this.router.navigate(['show/' + show.id]);
   }
 
   deleteShow(showToDelete: Show): void{

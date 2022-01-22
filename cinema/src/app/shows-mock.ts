@@ -1,6 +1,6 @@
 import { Show } from "./Show";
 import { Movies } from "./movie-mock";
-import { Rooms } from "./rooms-mock";
+import { Rooms } from "./rooms";
 
 const shows:Show[]=[
     new Show(0, Movies[0], Rooms[0], new Date(2022, 0, 24), 12, 15),

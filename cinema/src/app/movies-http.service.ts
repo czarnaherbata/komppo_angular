@@ -1,23 +1,27 @@
 import { getLocaleMonthNames } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Movie } from './Movie';
-import { Movies } from './movie-mock';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoviesHttpService {
-
-  
-  url='http://localhost:4200'
+  url='http://localhost:3000/movies'
   constructor(private http:HttpClient ) {
    }
+
    getMovies():Observable<Movie[]>
    {
-     return this.http.get<Movie[]>(this.url+'/notes').pipe(map(movies:Movie[])=>
-     movies.map(movie));
-   }
+    return this.http.get<Movie[]>(this.url).pipe(catchError(this.handleError<Movie[]>('getMovies', [])));
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(operation + ' failed' + error);
+      return of(result as T);
+    };
+  }
 }
