@@ -23,6 +23,7 @@ export class AddShowComponent implements OnInit {
   maxDate: any;
   hourList: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
   minuteList: number[] = [0, 15, 30, 45];
+  roomsList = Rooms;
 
   constructor(private movieService: MoviesHttpService, public dialogRef: MatDialogRef<AddShowComponent>, @Inject(MAT_DIALOG_DATA) public data: Show) {
     this.movieService.getMovies().subscribe(movieList => this.movieList = movieList);

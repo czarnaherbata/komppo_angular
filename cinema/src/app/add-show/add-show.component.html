@@ -15,34 +15,36 @@
             <input matInput type="date" [(ngModel)]="data.date" name="date" min="{{todayDate}}" max="{{maxDate}}" required>
         </mat-form-field>
 
-        <!-- <mat-form-field>
+        <mat-form-field class="addShowHourSelect">
             <mat-label>Godzina: </mat-label>
-            <mat-select [(ngModel)]="data.hour" name="hour" required>
-                <mat-option *ngFor="let hour of hourList" [value]="hour">
-                    {{hour}}
+            <div class="addShowHourSelect">
+                <mat-select [(ngModel)]="data.hour" name="hour" required>
+                    <mat-option *ngFor="let hour of hourList" [value]="hour">
+                        {{hour}}
+                    </mat-option>
+                </mat-select>
+    
+                <mat-select [(ngModel)]="data.minute" name="minute" required>
+                    <mat-option *ngFor="let minute of minuteList" [value]="minute">
+                        {{minute}}
+                    </mat-option>
+                </mat-select>
+            </div>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Sala:</mat-label>
+            <mat-select [(ngModel)]="data.room" name="room" required> 
+                <mat-option *ngFor="let room of roomsList" [value]="room.roomNumber">
+                    Sala nr {{room.roomNumber}}, liczba miejsc: {{room.rows * room.seatsInRow}} 
                 </mat-option>
             </mat-select>
-
-            <mat-select [(ngModel)]="data.minute" name="minute" required>
-                <mat-option *ngFor="let minute of minuteList" [value]="minute">
-                    {{minute}}
-                </mat-option>
-            </mat-select>
         </mat-form-field>
 
-        <mat-form-field>
-            <mat-label></mat-label>
-            
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label></mat-label>
-            
-        </mat-form-field>
-
-        <mat-form-field>
-            <mat-label></mat-label>
-            
-        </mat-form-field> -->
+        <div mat-dialog-actions>
+            <button mat-button *ngIf="!f.valid" disabled cdkFocusInitial>Ok</button>
+            <button mat-button [mat-dialog-close]="data" *ngIf="f.valid" cdkFocusInitial>Ok</button>
+            <button mat-button (click)="onNoClick()">Anuluj</button>
+        </div>
     </form>
 </div>
