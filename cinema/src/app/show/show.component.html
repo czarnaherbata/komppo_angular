@@ -1,1 +1,11 @@
-<p>show works!</p>
+<div class="showComponent">
+  <p>{{show.title}}</p>
+  <p>Rok produkcji: {{show.year}}</p>
+  <p>Czas trwania: {{show.duration}}</p>
+  <p>Data: {{show.dateYear + '-' + show.dateMonth + '-' + show.dateDay}}</p>
+  <p>Godzina: {{show.hour + ':' + show.minute}}</p>
+  <p>Sala: {{show.roomNumber}}</p>
+  <p>Ilość miejsc: {{rooms[show.roomNumber - 1].rows * rooms[show.roomNumber - 1].seatsInRow}}</p>
+  <button mat-raised-buttor color="primary">edytuj</button>
+  <button mat-raised-buttor color="primary" (click)="deleteShow(show)">usuń</button>
+</div>

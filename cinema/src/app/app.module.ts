@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 // import { MoviesComponent } from './movies/movies.component';
 import { ShowsHttpService } from './shows-http.service';
 import { MoviesHttpService } from './movies-http.service';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MoviesHttpService } from './movies-http.service';
     EditShowComponent,
     AddShowComponent,
     ShowComponent,
+    DeleteDialogComponent,
    // MoviesMovieComponent,
     //MoviesComponent
   ],

@@ -8,10 +8,6 @@
             <p>Godzina: {{show.hour + ':' + show.minute}}</p>
             <p>Sala: {{show.roomNumber}}</p>
             <p>Ilość miejsc: {{rooms[show.roomNumber - 1].rows * rooms[show.roomNumber - 1].seatsInRow}}</p>
-            <div class="showButtons">
-              <button mat-raised-buttor color="primary" (click)=deleteShow(show)>Usuń</button>
-            </div>
-            <!-- <button mat-raised-buttor color="primary" (click)=openShow(show)>Przejdź do strony seansu</button> -->
         </div>
     </div>
 

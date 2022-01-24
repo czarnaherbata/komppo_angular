@@ -17,6 +17,10 @@ export class ShowsHttpService {
     return this.http.get<Show[]>(this.url).pipe(catchError(this.handleError<Show[]>('getShows', [])));
   }
 
+  getShowById(id: number): Observable<Show> {
+    return this.http.get<Show>(this.url + '/' + id).pipe(catchError(this.handleError<Show>('getShowById')));
+  }
+
   addShow(show: Show): Observable<Show> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })

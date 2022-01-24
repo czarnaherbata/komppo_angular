@@ -7,6 +7,7 @@ import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dial
 import { EditMovieComponent } from '../edit-movie/edit-movie.component';
 import { MoviesHttpService } from '../movies-http.service';
 import { ActivatedRoute } from '@angular/router';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-movie',
@@ -37,6 +38,15 @@ export class MovieComponent implements OnInit {
   }
 
   ngOnInit(): void { }
+
+  deleteDialog(type: boolean, can_delete: boolean, title: String): void {
+    let dialogRef = null 
+    
+    dialogRef = this.dialog.open(DeleteDialogComponent, {
+      width: '30%',
+      data: {type, can_delete, title}
+    });
+  }
 
   openDialog(add: boolean, edit: boolean, clickedMovie: Movie): void {
     let dialogRef = null;
@@ -81,11 +91,12 @@ export class MovieComponent implements OnInit {
     })
   }
   deleteMovie(movieToDelete: Movie): void {
-    console.log('delete' + movieToDelete.title);
+    // let dialogRef = this.dialog.open()
+    // console.log('delete' + movieToDelete.title);
 
-    if (movieToDelete.id === this.lastMovieId)
-      this.lastMovieId--;
+    // if (movieToDelete.id === this.lastMovieId)
+    //   this.lastMovieId--;
 
-    this.movieService.deleteMovie(movieToDelete).subscribe(result => this.movieList = this.movieList.filter(obj => obj !== movieToDelete));
+    // this.movieService.deleteMovie(movieToDelete).subscribe(result => this.movieList = this.movieList.filter(obj => obj !== movieToDelete));
   }
 }

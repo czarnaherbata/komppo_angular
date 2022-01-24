@@ -40,11 +40,25 @@
       "duration": 111,
       "roomNumber": 1,
       "roomSeats": 100,
-      "dateYear": 2022,
-      "dateMonth": 1,
-      "dateDay": 26,
-      "hour": 5,
-      "minute": 0
+      "dateYear": 7777,
+      "dateMonth": 7,
+      "dateDay": 7,
+      "hour": 2,
+      "minute": 30
+    },
+    {
+      "id": 2,
+      "movieId": 2,
+      "title": "film4",
+      "year": 1998,
+      "duration": 111,
+      "roomNumber": 1,
+      "roomSeats": 100,
+      "dateYear": 1111,
+      "dateMonth": 11,
+      "dateDay": 11,
+      "hour": 6,
+      "minute": 30
     }
   ]
 }

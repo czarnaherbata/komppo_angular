@@ -56,7 +56,7 @@ export class ShowsComponent implements OnInit {
   }
 
   deleteShow(showToDelete: Show): void {
-    this.showList = this.showList.filter(obj => obj !== showToDelete);
+    this.showService.deleteShow(showToDelete).subscribe(result => this.showList = this.showList.filter(obj => obj !== showToDelete));
   }
 }
 function calculateLastShowId() {
