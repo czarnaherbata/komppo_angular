@@ -1,6 +1,6 @@
 <div class="justifyView">
     <div class="showsList">
-        <div class="show" *ngFor="let show of showList">
+        <div class="show" *ngFor="let show of showList" (click)=openShow(show)>
             <p>{{show.title}}</p>
             <p>Rok produkcji: {{show.year}}</p>
             <p>Czas trwania: {{show.duration}}</p>
@@ -8,8 +8,10 @@
             <p>Godzina: {{show.hour + ':' + show.minute}}</p>
             <p>Sala: {{show.roomNumber}}</p>
             <p>Ilość miejsc: {{rooms[show.roomNumber - 1].rows * rooms[show.roomNumber - 1].seatsInRow}}</p>
-            <button mat-raised-buttor color="primary" (click)=deleteShow(show)>Usuń</button>
-            <button mat-raised-buttor color="primary" (click)=openShow(show)>Przejdź do strony seansu</button>
+            <div class="showButtons">
+              <button mat-raised-buttor color="primary" (click)=deleteShow(show)>Usuń</button>
+            </div>
+            <!-- <button mat-raised-buttor color="primary" (click)=openShow(show)>Przejdź do strony seansu</button> -->
         </div>
     </div>
 
