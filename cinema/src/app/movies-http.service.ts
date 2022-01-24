@@ -32,10 +32,13 @@ export class MoviesHttpService {
   }
 
   editMovie(movie: Movie): Observable<Movie> {
+    console.log("movieserviceedit: ");
+    console.log(movie);
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     }
-    return this.http.put<Movie>(this.url + '/' + movie.id, movie, httpOptions).pipe(catchError(this.handleError<Movie>('editMovie')))
+    console.log('put1')
+    return this.http.put<Movie>(this.url + '/' + movie.id, movie).pipe(catchError(this.handleError<Movie>('editMovie', movie)))
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

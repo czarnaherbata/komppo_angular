@@ -26,6 +26,7 @@ import { AddShowComponent } from './add-show/add-show.component';
 import { ShowComponent } from './show/show.component';
 import { HttpClientModule } from '@angular/common/http';
 // import { MoviesComponent } from './movies/movies.component';
+import { ShowsHttpService } from './shows-http.service';
 import { MoviesHttpService } from './movies-http.service';
 
 @NgModule({
@@ -66,7 +67,8 @@ import { MoviesHttpService } from './movies-http.service';
           provide: MatDialogRef,
           useValue: {}
       },
-      MoviesHttpService
+      MoviesHttpService,
+      ShowsHttpService
   ],
   bootstrap: [AppComponent]
 })

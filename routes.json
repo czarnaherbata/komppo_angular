@@ -1,0 +1,4 @@
+{
+  "/movies/:id" : "/movies/:id",
+  "/shows/:id" : "/movies/:id"
+}

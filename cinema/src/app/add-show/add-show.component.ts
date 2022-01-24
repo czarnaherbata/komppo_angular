@@ -14,7 +14,7 @@ import { Room } from '../Room';
 })
 
 export class AddShowComponent implements OnInit {
-  movieList: Movie[] = [];
+  // movieList: Movie[] = [];
   today: Date = new Date();
   todayYear: any;
   todayMonth: any;
@@ -25,8 +25,8 @@ export class AddShowComponent implements OnInit {
   minuteList: number[] = [0, 15, 30, 45];
   roomsList = Rooms;
 
-  constructor(private movieService: MoviesHttpService, public dialogRef: MatDialogRef<AddShowComponent>, @Inject(MAT_DIALOG_DATA) public data: {id: number, movie: Movie, room: Room, date: Date, hour: number, minute: number}) {
-    this.movieService.getMovies().subscribe(movieList => this.movieList = movieList);
+  constructor(private movieService: MoviesHttpService, public dialogRef: MatDialogRef<AddShowComponent>, @Inject(MAT_DIALOG_DATA) public data: {id: number, movie: Movie, room: Room, date: Date, hour: number, minute: number, movieList: Movie[]}) {
+    // this.movieService.getMovies().subscribe(movieList => this.movieList = movieList);
 
     this.todayYear = this.today.getFullYear();
     this.todayMonth = this.today.getMonth() + 1;

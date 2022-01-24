@@ -26,6 +26,7 @@ export class MovieComponent implements OnInit {
       this.movieList = movieList;
       this.calculateLastMovieId();
     });
+    console.log(this.movieList)
   }
 
   calculateLastMovieId() {
@@ -66,7 +67,8 @@ export class MovieComponent implements OnInit {
         }
         if (edit) {
           this.newMovie = new Movie(this.selectedMovie.id, result.title, result.duration, result.year)
-          this.movieService.editMovie(this.newMovie);
+          this.movieService.editMovie(this.newMovie).subscribe(result => this.movieService.getMovies());
+
           this.movieList.forEach((obj, index, tab) => {
             if (obj === this.selectedMovie) {
               tab[index] = this.newMovie;
@@ -80,7 +82,10 @@ export class MovieComponent implements OnInit {
   }
   deleteMovie(movieToDelete: Movie): void {
     console.log('delete' + movieToDelete.title);
-    // this.movieList = this.movieList.filter(obj => obj !== movieToDelete);
+
+    if (movieToDelete.id === this.lastMovieId)
+      this.lastMovieId--;
+
     this.movieService.deleteMovie(movieToDelete).subscribe(result => this.movieList = this.movieList.filter(obj => obj !== movieToDelete));
   }
 }

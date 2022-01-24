@@ -4,7 +4,7 @@
             <p>{{show.title}}</p>
             <p>Rok produkcji: {{show.year}}</p>
             <p>Czas trwania: {{show.duration}}</p>
-            <p>Data: {{show.date.getDate() + '-' + (show.date.getMonth() + 1) + '-' + show.date.getFullYear()}}</p>
+            <p>Data: {{show.dateYear + '-' + show.dateMonth + '-' + show.dateDay}}</p>
             <p>Godzina: {{show.hour + ':' + show.minute}}</p>
             <p>Sala: {{show.roomNumber}}</p>
             <p>Ilość miejsc: {{rooms[show.roomNumber - 1].rows * rooms[show.roomNumber - 1].seatsInRow}}</p>

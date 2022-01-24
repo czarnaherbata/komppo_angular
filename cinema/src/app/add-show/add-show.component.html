@@ -4,7 +4,7 @@
         <mat-form-field class="example-full-width">
             <mat-label>Film:</mat-label>
             <mat-select [(ngModel)]="data.movie" name="movie" required>
-                <mat-option *ngFor="let movie of movieList" [value]="movie">
+                <mat-option *ngFor="let movie of data.movieList" [value]="movie">
                     {{movie.title}}
                 </mat-option>
             </mat-select>
