@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Rooms } from '../rooms';
 import { Movie } from '../Movie';
 import { Show } from '../Show';
-import { MoviesHttpService } from '../movies-http.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Room } from '../Room';
 
@@ -10,7 +9,7 @@ import { Room } from '../Room';
   selector: 'app-add-show',
   templateUrl: './add-show.component.html',
   styleUrls: ['./add-show.component.css'],
-  providers: [MoviesHttpService]
+  providers: []
 })
 
 export class AddShowComponent implements OnInit {
@@ -25,7 +24,7 @@ export class AddShowComponent implements OnInit {
   minuteList: number[] = [0, 15, 30, 45];
   roomsList = Rooms;
 
-  constructor(private movieService: MoviesHttpService, public dialogRef: MatDialogRef<AddShowComponent>, @Inject(MAT_DIALOG_DATA) public data: {id: number, movie: Movie, room: Room, date: Date, hour: number, minute: number, movieList: Movie[]}) {
+  constructor(public dialogRef: MatDialogRef<AddShowComponent>, @Inject(MAT_DIALOG_DATA) public data: {id: number, movie: Movie, room: Room, date: Date, hour: number, minute: number, movieList: Movie[]}) {
     // this.movieService.getMovies().subscribe(movieList => this.movieList = movieList);
 
     this.todayYear = this.today.getFullYear();

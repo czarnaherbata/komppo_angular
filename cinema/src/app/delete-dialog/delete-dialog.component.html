@@ -5,12 +5,20 @@
   <div *ngIf="!data.type">
     <h1 mat-dialog-title>Czy na pewno chcesz usunąć seans filmu {{data.title}}?</h1>
   </div>
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true">Tak</button>
+    <button mat-button (click)="onNoClick()">Anuluj</button>
+  </div>
 </div>
 <div *ngIf="!data.can_delete">
   <div *ngIf="data.type">
-    <h1 mat-dialog-title>Nie można usunąć filmu {{data.title}}, ponieważ jest on przypisany do seansu</h1>
+    <h1 mat-dialog-title>Nie można usunąć filmu {{data.title}}, ponieważ jest on przypisany do seansu.</h1>
   </div>
   <div *ngIf="!data.type">
-    <h1 mat-dialog-title>Nie można usunąć seansu filmu {{data.title}}, ponieważ zakupiono już na niego bilet</h1>
+    <h1 mat-dialog-title>Nie można usunąć seansu filmu {{data.title}}, o godzinie {{data.hour}}:{{data.minute}},
+      ponieważ zakupiono już na niego bilet.</h1>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Ok</button>
   </div>
 </div>

@@ -1,30 +1,16 @@
 <div className="justifyView">
-    <!-- <table>
-         <thead>
-             <tr>
-                 <th *ngFor="let movie_th of headers">
-                     <span class="theader"></span>
-                 </th>
-             </tr>
-         </thead>
-            <tr *ngFor="let movie of movieList"><td>
-               <td><span class="tbody" >{{movie.title}}</span></td>
-                <td><span class="tbody" >{{movie.duration}}</span></td>
-                <td><span class="tbody">{{movie.Date}}</span>
-            </td></tr>
-    </table> -->
-
-    <div class="moviesList">
+  <div class="moviesList">
         <div class="movie" *ngFor="let movie of movieList">
-            <p>{{movie.title}}</p>
+            <!-- <p>{{movie.title}}</p>
             <p>{{movie.duration}}</p>
-            <p>{{movie.year}}</p>
-            <!-- <button mat-raised-buttor color="primary" (click)="openDialog(false, true, movie)">edytuj</button> -->
-            <button mat-raised-buttor color="primary" (click)="deleteDialog(false, true, 'film1')">edytuj</button>
-            <button mat-raised-buttor color="primary" (click)="deleteMovie(movie)">usuń</button>
-
+            <p>{{movie.year}}</p> -->
+            <app-singlemovie [movie]="movie"></app-singlemovie>
+            <div class="movieOptions">
+              <button mat-raised-button color="primary" (click)="openDialog(false, true, movie)">Edytuj</button>
+              <button mat-raised-button color="warn" (click)="deleteDialog(movie)">Usuń</button>
+            </div>
         </div>
     </div>
 
-    <button mat-raised-buttor color="primary" (click)="openDialog(true, false, null)">DODAJ FILM</button>
+    <button mat-raised-button color="basic" (click)="openDialog(true, false, null)">Dodaj Film</button>
 </div>

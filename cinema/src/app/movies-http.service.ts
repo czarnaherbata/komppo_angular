@@ -28,7 +28,7 @@ export class MoviesHttpService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     }
-    return this.http.delete<Movie>(this.url + '/' + movie.id, httpOptions).pipe(catchError(this.handleError<unknown>('deleteMovie')))
+    return this.http.delete<Movie>(this.url + '/' + movie.id, httpOptions).pipe(catchError(this.handleError('deleteMovie')))
   }
 
   editMovie(movie: Movie): Observable<Movie> {

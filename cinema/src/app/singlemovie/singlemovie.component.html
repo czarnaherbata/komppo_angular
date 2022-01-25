@@ -1,1 +1,10 @@
-<p>singlemovie works!</p>
+<mat-card>
+  <mat-card-header class="movieHeader">
+    <mat-card-title class="movieTitle">{{movie.title}}</mat-card-title>
+  </mat-card-header>
+  <!-- <img mat-card-image src="https://i1.sndcdn.com/avatars-000495996573-7xpt1u-t500x500.jpg"> -->
+  <mat-card-content class="movieDetails">
+    <p>Rok produkcji: {{movie.year}}</p>
+    <p>Czas trwania: {{movie.duration}}</p>
+  </mat-card-content>
+</mat-card>

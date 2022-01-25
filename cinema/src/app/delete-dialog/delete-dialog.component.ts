@@ -9,14 +9,13 @@ import { Show } from '../Show';
   styleUrls: ['./delete-dialog.component.css']
 })
 export class DeleteDialogComponent implements OnInit {
-
-  constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: {type: boolean, can_delete: boolean, title: String}) { }
+  constructor(public dialogRef: MatDialogRef<DeleteDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: {type: boolean, can_delete: boolean, title: String, hour?: number, minute?: number}) { }
 
   ngOnInit(): void {
 
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 }

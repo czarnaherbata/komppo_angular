@@ -1,15 +1,26 @@
 <div class="justifyView">
-    <div class="showsList">
-        <div class="show" *ngFor="let show of showList" (click)=openShow(show)>
-            <p>{{show.title}}</p>
-            <p>Rok produkcji: {{show.year}}</p>
-            <p>Czas trwania: {{show.duration}}</p>
-            <p>Data: {{show.dateYear + '-' + show.dateMonth + '-' + show.dateDay}}</p>
-            <p>Godzina: {{show.hour + ':' + show.minute}}</p>
-            <p>Sala: {{show.roomNumber}}</p>
-            <p>Ilość miejsc: {{rooms[show.roomNumber - 1].rows * rooms[show.roomNumber - 1].seatsInRow}}</p>
-        </div>
+  <div class="showsList">
+    <div class="show" *ngFor="let show of showList">
+      <mat-card class="showCard" (click)=openShow(show)>
+        <mat-card-header class="showHeader">
+          <mat-card-title>Seans {{show.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="showDetails">
+          <p>{{show.title}}</p>
+          <p>Rok produkcji: {{show.year}}</p>
+          <p>Czas trwania: {{show.duration}}</p>
+          <p>Data: {{show.dateYear + '-' + show.dateMonth + '-' + show.dateDay}}</p>
+          <p>Godzina: {{show.hour + ':' + show.minute}}</p>
+          <p>Sala: {{show.roomNumber}}</p>
+          <p>Ilość miejsc: {{rooms[show.roomNumber - 1].rows * rooms[show.roomNumber - 1].seatsInRow}}</p>
+        </mat-card-content>
+      </mat-card>
+      <div class="movieOptions">
+        <button mat-raised-button color="primary" (click)="editShow(show)">Edytuj</button>
+        <button mat-raised-button color="warn" (click)="deleteShow(show)">Usuń</button>
+      </div>
     </div>
+  </div>
 
-    <button mat-raised-buttor color="primary" (click)="openDialog()">Dodaj Seans</button>
+  <button mat-raised-button color="basic" (click)="openDialog()">Dodaj Seans</button>
 </div>

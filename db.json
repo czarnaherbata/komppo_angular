@@ -2,63 +2,10 @@
   "movies": [
     {
       "id": 1,
-      "title": "film3",
-      "duration": 97,
-      "year": 1997
-    },
-    {
-      "id": 2,
-      "title": "film4",
-      "duration": 111,
-      "year": 1998
-    },
-    {
-      "id": 3,
-      "title": "film5",
-      "duration": 123,
-      "year": 1982
-    },
-    {
-      "id": 4,
-      "title": "asd",
-      "duration": 213,
-      "year": 1905
-    },
-    {
-      "id": 6,
       "title": "123",
-      "duration": 33,
-      "year": 1923
+      "duration": 123,
+      "year": 1905
     }
   ],
-  "shows": [
-    {
-      "id": 1,
-      "movieId": 2,
-      "title": "film4",
-      "year": 1998,
-      "duration": 111,
-      "roomNumber": 1,
-      "roomSeats": 100,
-      "dateYear": 7777,
-      "dateMonth": 7,
-      "dateDay": 7,
-      "hour": 2,
-      "minute": 30
-    },
-    {
-      "id": 2,
-      "movieId": 2,
-      "title": "film4",
-      "year": 1998,
-      "duration": 111,
-      "roomNumber": 1,
-      "roomSeats": 100,
-      "dateYear": 1111,
-      "dateMonth": 11,
-      "dateDay": 11,
-      "hour": 6,
-      "minute": 30
-    }
-  ]
+  "shows": []
 }

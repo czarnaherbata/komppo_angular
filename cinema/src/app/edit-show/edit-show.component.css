@@ -1,0 +1,13 @@
+.mat-dialog-content {
+  padding-bottom: 24px !important;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.addShowHourSelect {
+  display: flex;
+  flex-direction: column;
+}
